@@ -1,0 +1,35 @@
+.sidenav-wrapper {
+  width: 15vw;
+  .header {
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+}
+.header-thumbnail {
+  width: 100%;
+}
+
+.sidenav-content {
+  margin-left: -20px;
+  .menu-list {
+    & > * {
+      list-style-type: none;
+
+      margin: 10px;
+      padding: 0;
+      border-bottom: solid lightcoral 1px;
+      &:hover {
+        color: pink;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.container {
+  height: 100%;
+}
+
+.sidenav-content {
+  height: 100%;
+}
