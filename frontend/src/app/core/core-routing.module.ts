@@ -18,6 +18,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./../feature/cart/cart.module").then((m) => m.CartModule),
       },
+      {
+        path: "caff",
+        loadChildren: () =>
+          import("./../feature/caff/caff.module").then((m) => m.CaffModule),
+      },
     ],
   },
   {

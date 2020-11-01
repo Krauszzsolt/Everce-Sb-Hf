@@ -1,4 +1,4 @@
-<mat-drawer-container class="container" autosize>
+<!-- <mat-drawer-container class="container" autosize>
 
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <div class="sidenav-wrapper">
@@ -29,4 +29,20 @@
     <router-outlet></router-outlet>
   </div>
   
-</mat-drawer-container>
+</mat-drawer-container> -->
+
+<mat-toolbar>
+  <span>Caff Shop</span>
+  <span class="example-spacer"></span>
+  
+  <!-- Bejelentkezett felhasználó esetén -->
+  <mat-search-bar></mat-search-bar>
+  <button mat-button>Logout</button>
+
+  <!-- Anonim felhasználó esetén -->
+  <button mat-button [routerLink]="['/login']" > Login </button>
+  <button mat-button >Registration</button>
+
+</mat-toolbar>
+<router-outlet></router-outlet>
+

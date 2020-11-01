@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="login-card">
     <div class="login-header">
       <h3>Bejelentkezés</h3>
@@ -14,6 +14,29 @@
         </mat-form-field>
         <button mat-button class="login-button" color="primary">Bejelentkezés</button>
       </form>
-     
   </div>
+</div> -->
+<div class="container">
+  <mat-card class="login-card">
+    <mat-card-title class="title">
+      <img src="../../../assets/caff-icon-o.png" alt="icon">
+    </mat-card-title>
+    <mat-card-subtitle class="title">
+      <h1>Bejelentkezés</h1>
+    </mat-card-subtitle>
+    <mat-card-content class="content">
+      <form class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Felhasználó név</mat-label>
+          <input matInput placeholder="Felhasználó név" value="">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Jelszó</mat-label>
+          <input matInput placeholder="Jelszó" value="">
+        </mat-form-field>
+        <mat-card-actions><button mat-button class="login-button">Bejelentkezés</button></mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card> 
 </div>
+
