@@ -32,16 +32,16 @@
 </mat-drawer-container> -->
 
 <mat-toolbar>
-  <span>Caff Shop</span>
+  <span [routerLink]="['/main/caff']">Caff Shop</span>
   <span class="example-spacer"></span>
   
   <!-- Bejelentkezett felhasználó esetén -->
   <mat-search-bar></mat-search-bar>
-  <button mat-button>Logout</button>
+  <button mat-button [routerLink]="['/main/login']">Logout</button>
 
   <!-- Anonim felhasználó esetén -->
-  <button mat-button [routerLink]="['/login']" > Login </button>
-  <button mat-button >Registration</button>
+  <button mat-button [routerLink]="['/main/login']" > Login </button>
+  <button mat-button [routerLink]="['/main/registration']">Registration</button>
 
 </mat-toolbar>
 <router-outlet></router-outlet>
