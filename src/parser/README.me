@@ -1,0 +1,10 @@
+IPreviewProvider.h contains the signature of the interface which is used to generate a preview.
+
+unsigned char* getPreviewOfCaff(std::istream& is, unsigned long long size);
+
+"is" is the stream which streams the CAFF file
+"size" is the width and height of the generated preview file
+The return value is a pointer to a bytearray which contains the generated preview in BMP format. The length of the array is size * size * 4 + 54.
+The return array is in the heap.
+
+CrySySParser.cpp contains the main function. It generates a 300*300 preview of 1.caff, and saves it in the "out.bmp" file.
