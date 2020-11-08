@@ -9,6 +9,10 @@ import { CaffAddDialogComponent } from './caff-add-dialog/caff-add-dialog.compon
 
 @NgModule({
   declarations: [CaffListComponent, CaffItemComponent, CaffAddDialogComponent],
+  entryComponents: [
+    CaffAddDialogComponent
+  ],
+
   imports: [
     CommonModule,
     CaffRoutingModule,

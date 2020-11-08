@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { SharedModule } from "../../../shared/shared.module";
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-caff-add-dialog',
@@ -8,9 +7,13 @@ import { SharedModule } from "../../../shared/shared.module";
   styleUrls: ['./caff-add-dialog.component.scss']
 })
 export class CaffAddDialogComponent implements OnInit {
-  constructor() {}
+  constructor(public dialogRef: MatDialogRef<CaffAddDialogComponent>) {}
 
   ngOnInit() {
+  }
+
+  close(){
+    this.dialogRef.close('Pizza!');
   }
 
 }
