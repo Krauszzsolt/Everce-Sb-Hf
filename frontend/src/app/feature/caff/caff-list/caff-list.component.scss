@@ -14,6 +14,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    .add-button{
+        background: $orange-2;
+        align-self: center;
+    }
 }
 
 .mat-card{
@@ -22,7 +26,20 @@
     margin-top: 1rem;
     padding: 0;
     .title{
-        padding-top: 1rem
+        padding-top: 1rem;
+        .title-input{
+            background: $dark-grey-4;
+            width: 90%;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .modify-button {
+            background: $orange-2;
+            width: 90%;
+            margin-top: 0.5rem;
+        }
     }
     .cover{
         width: 100%;
@@ -34,5 +51,11 @@
         height: 100%;
         padding: 0.3rem 0;
         background: $dark-grey-2;
+    }
+    .delete-button{
+        width: 85%;
+        height: 100%;
+        padding: 0.3rem 0;
+        background: $dark-grey;
     }
 }

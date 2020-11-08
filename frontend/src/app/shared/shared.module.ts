@@ -8,6 +8,8 @@ import { MatToolbarModule } from '@angular/material';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [],
@@ -20,7 +22,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatToolbarModule,
     NgMatSearchBarModule,
     MatCardModule,
-    LayoutModule
+    LayoutModule,
+    MatDialogModule, 
   ],
   exports: [
     MatFormFieldModule,
@@ -30,7 +33,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatToolbarModule,
     NgMatSearchBarModule,
     MatCardModule,
-    LayoutModule
+    LayoutModule,
+    MatDialogModule, 
   ],
 })
 export class SharedModule {}

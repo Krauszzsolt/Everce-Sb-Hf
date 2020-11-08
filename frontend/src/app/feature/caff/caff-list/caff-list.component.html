@@ -1,20 +1,29 @@
-<!-- <div class="container">
-  <mat-card>Simple card</mat-card>
-  <mat-card>Simple card</mat-card>
-  <mat-card>Simple card</mat-card>
-</div>
- -->
 <div class="container">
-  <h1>CAFF Files</h1>
+  <div class="row">
+    <h1>CAFF Files</h1>
+    <button mat-button class="add-button" (click)="openDialog()">Add new CAFF File</button>
+  </div>
+
   <div class="row">
 
     <mat-card>
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
-      </mat-card-title>
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
+    </mat-card-title>
       <mat-card-content class="content">
+
+          <!-- Admin felhasnzáló esetén -->
+          <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+          <!-- Sima felhasználó esetén -->
           <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
@@ -22,9 +31,20 @@
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
       </mat-card-title>
       <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
@@ -32,9 +52,20 @@
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
       </mat-card-title>
       <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
@@ -42,9 +73,20 @@
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
       </mat-card-title>
       <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
@@ -52,9 +94,20 @@
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
       </mat-card-title>
       <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
@@ -62,52 +115,106 @@
       <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
       <mat-card-title class="title">
         Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
       </mat-card-title>
       <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card>
-      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
-      <mat-card-title class="title">
-        Title one
-      </mat-card-title>
-      <mat-card-content class="content">
-        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card>
-      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
-      <mat-card-title class="title">
-        Title one
-      </mat-card-title>
-      <mat-card-content class="content">
-        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card>
-      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
-      <mat-card-title class="title">
-        Title one
-      </mat-card-title>
-      <mat-card-content class="content">
-        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card>
-      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
-      <mat-card-title class="title">
-        Title one
-      </mat-card-title>
-      <mat-card-content class="content">
-        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
       </mat-card-content>
     </mat-card>
 
+    <mat-card>
+      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
+      <mat-card-title class="title">
+        Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
+      </mat-card-title>
+      <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
+        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
+      <mat-card-title class="title">
+        Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
+      </mat-card-title>
+      <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
+        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
+      <mat-card-title class="title">
+        Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
+      </mat-card-title>
+      <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
+        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon">
+      <mat-card-title class="title">
+        Title one
+
+        <!-- Admin flehanszáló esetén -->
+        <input matInput placeholder="New title" class="title-input" value="">
+        <button mat-button class="modify-button">Modify</button>
+
+      </mat-card-title>
+      <mat-card-content class="content">
+
+        <!-- Admin felhasnzáló esetén -->
+        <mat-card-actions><button mat-button class="delete-button">Delete</button></mat-card-actions>
+
+        <!-- Sima felhasználó esetén -->
+        <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
+
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 

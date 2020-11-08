@@ -5,7 +5,7 @@ import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
   {
-    path: "home",
+    path: "main",
     component: LayoutComponent,
     children: [
       {
@@ -32,7 +32,7 @@ const routes: Routes = [
 
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "main/login",
   },
 ];
 

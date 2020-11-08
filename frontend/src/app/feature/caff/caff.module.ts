@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CaffListComponent } from './caff-list/caff-list.component';
 import { CaffRoutingModule } from './caff-routing-module';
 import { SharedModule } from "src/app/shared/shared.module";
+import { CaffItemComponent } from './caff-item/caff-item.component';
+import { CaffAddDialogComponent } from './caff-add-dialog/caff-add-dialog.component';
 
 
 @NgModule({
-  declarations: [CaffListComponent],
+  declarations: [CaffListComponent, CaffItemComponent, CaffAddDialogComponent],
   imports: [
     CommonModule,
     CaffRoutingModule,
     SharedModule
   ]
 })
-export class CaffModule { }
+export class CaffModule { 
+}
