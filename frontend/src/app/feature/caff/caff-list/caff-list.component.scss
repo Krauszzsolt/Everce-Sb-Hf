@@ -1,0 +1,38 @@
+@import "../../../app.component.scss";
+
+.container{
+    margin-left: 15vw;
+    margin-right: 15vw;
+    @media screen and (max-width: 765px) {
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mat-card{
+    text-align: center;
+    width: 15rem;
+    margin-top: 1rem;
+    padding: 0;
+    .title{
+        padding-top: 1rem
+    }
+    .cover{
+        width: 100%;
+        max-height: 20vh;
+        object-fit: cover;
+    }
+    .download-button{
+        width: 85%;
+        height: 100%;
+        padding: 0.3rem 0;
+        background: $dark-grey-2;
+    }
+}

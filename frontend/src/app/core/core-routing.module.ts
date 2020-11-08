@@ -23,12 +23,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("./../feature/caff/caff.module").then((m) => m.CaffModule),
       },
+      {
+        path: "login",
+        component: LoginComponent
+      },
     ],
   },
-  {
-    path: "login",
-    component: LoginComponent,
-  },
+
   {
     path: "",
     redirectTo: "login",
