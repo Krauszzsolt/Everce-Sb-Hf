@@ -26,6 +26,7 @@
     "@material/toolbar": "^2.3.0",
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^4.5.2",
+    "bulma": "^0.9.1",
     "core-js": "^2.5.4",
     "jwt-decode": "^3.0.0",
     "moment": "2.24.0",

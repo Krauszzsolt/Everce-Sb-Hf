@@ -1,10 +1,61 @@
+<!-- Upload file with preview -->
+<!-- https://fiyazhasan.me/angular-file-upload-using-asp-net-core/ -->
 
-<h2 mat-dialog-title>This is a Dialog title</h2>
+
+<h1 mat-dialog-title>Add new CAFF File</h1>
 
 <mat-dialog-content>
-  <p> Place content here </p>
+  <input matInput placeholder="Title" class="title-input" value="">
+  <!-- <button class="mat-raised-button" (click)="browse()">Browse</button>  -->
+  <div class="columns">
+    <div class="column ">
+      <div class="field">
+        <div class="file has-name is-primary is-fullwidth">
+          <label class="file-label">
+            <input class="file-input" type="file" name="file" #fileInput (change)="onChange(fileInput.files[0])" />
+            <span class="file-label">
+              Choose a file…
+            </span>
+            <span class="file-name">
+              <!-- {{ fileName }} --> filename.png
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- *ngIf="infoMessage" -->
+      <article class="message">
+        <div class="message-body">
+          <!-- {{ infoMessage }}  --> message
+        </div>
+      </article>
+  
+      <!-- *ngIf="!infoMessage" -->
+      <div class="field" >
+        <div class="control">
+          <progress class="progress is-primary" [attr.value]="progress" max="100"></progress>
+        </div>
+      </div>
+  
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary" (click)="onUpload()" [attr.disabled]="isUploading ? '' : null">
+            Upload
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="column is-one-third">
+      <figure class="image">
+        <!-- <img [src]="imageUrl" /> -->
+      <img src="../../../assets/placeholder.png" alt="placeholder">
+      </figure>
+    </div>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button" (click)="add()">Add</button>
 </mat-dialog-actions>
