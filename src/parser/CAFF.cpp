@@ -186,8 +186,7 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			}
 			else
 			{
-				std::cout << "Too many CIFFS";
-				return is;
+				throw CAFF_format_exception("Too many CIFFs in the CAFF file");
 			}
 			
 			break;
