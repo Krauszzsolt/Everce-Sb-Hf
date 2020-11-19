@@ -49,6 +49,7 @@ namespace Backend
 
             // configure DI for application services
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAnimationService, AnimationService>();
 
             // configure strongly typed settings object
             services.Configure<JWTSettings>(Configuration.GetSection("JWTSettings"));
