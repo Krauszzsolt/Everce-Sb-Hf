@@ -12,6 +12,7 @@ import {
   HTTP_INTERCEPTORS,
 } from "@angular/common/http";
 import { JwtInerceptorService } from "./core/interceptor/jwt-inerceptor.service";
+import { BASE_PATH } from './shared/client';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,10 +24,10 @@ import { JwtInerceptorService } from "./core/interceptor/jwt-inerceptor.service"
   ],
   providers: [
     HttpClient,
-    //   {
-    //     provide: API_BASE_URL,
-    //     useValue: environment.API_BASE_URL
-    // },
+    {
+        provide: BASE_PATH,
+        useValue: environment.API_BASE_URL
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInerceptorService,

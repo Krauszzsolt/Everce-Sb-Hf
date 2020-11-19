@@ -8,23 +8,28 @@ import {
 
 import { AuthService } from "../service/auth.service";
 import { Observable } from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: "root",
 })
 export class JwtInerceptorService implements HttpInterceptor {
-  constructor(public auth: AuthService) {}
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    console.log(this.auth.getToken());
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.auth.getToken()}`,
-      },
-      withCredentials: true,
-    });
+
+  constructor(public auth: AuthService) { }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const currentUser = null;//this.auth.currentUserValue;
+    const isLoggedIn = currentUser && currentUser.token;
+    const isApiUrl = request.url.startsWith(environment.API_BASE_URL);
+    if (isLoggedIn && isApiUrl) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      });
+    }
+    
     return next.handle(request);
   }
 }

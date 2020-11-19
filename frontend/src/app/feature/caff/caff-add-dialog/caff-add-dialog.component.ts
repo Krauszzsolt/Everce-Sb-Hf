@@ -4,16 +4,23 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-caff-add-dialog',
   templateUrl: './caff-add-dialog.component.html',
-  styleUrls: ['./caff-add-dialog.component.scss']
+  styleUrls: ['./caff-add-dialog.component.scss'],
 })
 export class CaffAddDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CaffAddDialogComponent>) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+  progress;
 
-  close(){
+  isUploading;
+
+  close() {
     this.dialogRef.close('Pizza!');
   }
 
+  add() {}
+
+  onUpload() {}
+
+  onChange() {}
 }

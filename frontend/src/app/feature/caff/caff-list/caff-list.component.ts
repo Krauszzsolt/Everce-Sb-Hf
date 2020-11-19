@@ -5,21 +5,18 @@ import { CaffAddDialogComponent } from '../caff-add-dialog/caff-add-dialog.compo
 @Component({
   selector: 'app-caff-list',
   templateUrl: './caff-list.component.html',
-  styleUrls: ['./caff-list.component.scss']
+  styleUrls: ['./caff-list.component.scss'],
 })
 export class CaffListComponent implements OnInit {
-
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  openDialog(){
+  openDialog() {
     const dialogRef = this.dialog.open(CaffAddDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
-
 }

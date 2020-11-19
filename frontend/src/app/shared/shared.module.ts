@@ -1,18 +1,17 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
-import { MatToolbarModule } from '@angular/material';
-import { NgMatSearchBarModule } from 'ng-mat-search-bar';
-import { MatCardModule } from '@angular/material/card';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule, MatDialogModule, MatToolbarModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatDialogModule } from '@angular/material/dialog';
-
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import { MatDialogWrapperComponent } from './dialog/mat-dialog-wrapper.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+  declarations: [MatDialogWrapperComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -23,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgMatSearchBarModule,
     MatCardModule,
     LayoutModule,
-    MatDialogModule, 
+    MatDialogModule,
+    FormsModule
   ],
   exports: [
     MatFormFieldModule,
@@ -34,7 +34,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgMatSearchBarModule,
     MatCardModule,
     LayoutModule,
-    MatDialogModule, 
+    MatDialogModule,
+    MatDialogWrapperComponent,
+    FormsModule
   ],
+  entryComponents: [MatDialogWrapperComponent],
 })
 export class SharedModule {}
