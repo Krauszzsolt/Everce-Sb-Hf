@@ -1,4 +1,5 @@
 ﻿using BLL.DTOs;
+using BLL.Services;
 using DAL.Data;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace BLL.Services
     public class AnimationService : IAnimationService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IFileManager _fileManager;
 
-        public AnimationService(ApplicationDbContext context)
+        public AnimationService(ApplicationDbContext context, IFileManager fileManager)
         {
             _context = context;
+            _fileManager = fileManager;
         }
 
         public async Task<List<AnimationDto>> GetAnimations(string searchTerm)
@@ -52,11 +55,14 @@ namespace BLL.Services
 
         public async Task<AnimationDto> AddAnimation(NewAnimationDto newAnimation)
         {
+            var animationDir = "animations";
+            var animationFileName = await _fileManager.SaveFile(newAnimation.AnimationFile, animationDir);
+
             var animationToAdd = new Animation()
             {
                 Title = newAnimation.Title,
                 //PreviewImageFile = ,
-                //AnimationFile =
+                AnimationFile = $"/{animationDir}/{animationFileName}"
             };
             _context.Animations.Add(animationToAdd);
             await _context.SaveChangesAsync();
