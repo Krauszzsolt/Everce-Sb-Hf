@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 # Client generated files
-src/app/shared/client/*
+src/frontend/src/app/shared/client/*
