@@ -10,7 +10,7 @@
 int main()
 {
     std::ifstream f("1.caff", std::ifstream::binary);
-    unsigned long long size = 300;
+    unsigned long long size = 1000;
 
     PreviewProvider pp;
 
