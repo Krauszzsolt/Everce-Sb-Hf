@@ -13,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Backend
 {
@@ -82,6 +81,8 @@ namespace Backend
             {
                 app.UseHttpsRedirection();
             }
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
