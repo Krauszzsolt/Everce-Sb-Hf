@@ -132,7 +132,7 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 				throw CAFF_format_exception("Wrong magic header");
 
 			is.read(inputbytes, 8);
-			caff.header_size = *(reinterpret_cast<unsigned long long*>( inputbytes));
+			caff.header_size = *(reinterpret_cast<unsigned long long*>(inputbytes));
 
 			if (caff.header_size != 20)
 				throw CAFF_format_exception("Wrong header_size");
@@ -186,7 +186,8 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			}
 			else
 			{
-				throw CAFF_format_exception("Too many CIFFs in the CAFF file");
+				if (caff.header_size != 20)
+					throw CAFF_format_exception("Too many CIFFs in the CAFF file");
 			}
 			
 			break;

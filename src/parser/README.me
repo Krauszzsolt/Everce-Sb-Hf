@@ -8,3 +8,5 @@ The return value is a pointer to a bytearray which contains the generated previe
 The return array is in the heap.
 
 CrySySParser.cpp contains the main function. It generates a 300*300 preview of 1.caff, and saves it in the "out.bmp" file.
+
+To create the DLL file use the g++ -std=c++11 -shared -o CrySySParser.dll CIFF.cpp CAFF.cpp PreviewProvider.cpp -I.
