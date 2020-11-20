@@ -10,14 +10,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'food',
-        loadChildren: () => import('./../feature/food/food.module').then((m) => m.FoodModule),
-      },
-      {
-        path: 'cart',
-        loadChildren: () => import('./../feature/cart/cart.module').then((m) => m.CartModule),
-      },
-      {
         path: 'caff',
         loadChildren: () => import('./../feature/caff/caff.module').then((m) => m.CaffModule),
       },

@@ -12,11 +12,7 @@ const routes: Routes = [
   {
     path: 'item',
     component: CaffItemComponent,
-  },
-  // {
-  //     path: "dialog",
-  //     component: CaffAddDialogComponent,
-  // },
+  }
 ];
 
 @NgModule({
