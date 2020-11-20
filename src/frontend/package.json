@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",    
+    "e2e": "ng e2e",
     "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:55368/swagger/v1/swagger.json -o ./src/app/shared/client"
   },
   "private": true,
