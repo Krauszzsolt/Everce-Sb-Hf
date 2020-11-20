@@ -1,51 +1,28 @@
-
-<app-mat-dialog-wrapper>
-    <div class="mat-dialog-content">
-    <input matInput placeholder="Title" class="title-input" value="" />
-    <!-- <button class="mat-raised-button" (click)="browse()">Browse</button>  -->
-    <div></div>
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <div class="file has-name is-primary is-fullwidth">
-            <label class="file-label">
-              <input class="file-input" type="file" name="file" #fileInput (change)="onChange(fileInput.files[0])" />
-              <span class="file-label"> Choose a file… </span>
-              <span class="file-name">
-                <!-- {{ fileName }} -->
-                filename.png
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <!-- *ngIf="infoMessage" -->
-        <article class="message">
-          <div class="message-body">
-            <!-- {{ infoMessage }}  -->
-            message
-          </div>
-        </article>
-
-        <!-- *ngIf="!infoMessage" -->
-        <div class="field">
-          <div class="control">
-            <progress class="progress is-primary" [attr.value]="progress" max="100"></progress>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary" (click)="onUpload()" [attr.disabled]="isUploading ? '' : null">Upload</button>
-          </div>
-        </div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <h2>New story</h2>
+</div>
+<mat-card-content>
+  <form [formGroup]="newStoryForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row">
+      <div fxFlex="30%" fxLayout="column">      
+        <button mat-raised-button (click)="fileInput.click()" type="button">Choose File</button>
+        <input hidden type="file" #fileInput (change)="onFileChange($event)" />
       </div>
-      <div class="column is-one-third">
-        <figure class="image">
-          <!-- <img [src]="imageUrl" /> -->
-          <img src="../../../assets/placeholder.png" alt="placeholder" />
-        </figure>
+      <div fxFlex="5%" fxLayout="column"></div>
+      <div fxFlex="65%" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+          <mat-error *ngIf="f.title.errors && f.title.errors.required">Title is required </mat-error>
+        </mat-form-field>       
+        <div>
+          <button *ngFor="let selected of f.tags.value" (click)="deselect(selected)" mat-flat-button color="accent" class="side-buffer" type="button">{{ selected }}</button>
+        </div>
+        <p *ngIf="error" class="error-field">{{ error }}</p>
+        <div class="top-buffer-2" fxLayout="row" fxLayoutAlign="center">
+          <button *ngIf="!loading" [disabled]="loading" fxFlex="25%" mat-flat-button color="primary">Create</button>
+        </div>
       </div>
     </div>
-  </div>
-</app-mat-dialog-wrapper>
+  </form>
+</mat-card-content>

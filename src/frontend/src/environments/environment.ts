@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  basePath: "./../../../../frontend.Api",
-  API_BASE_URL: "https://localhost:5001",
+  basePath: "./../../../../frontend.Api",  
+  API_BASE_URL: 'https://localhost:44364',
 };
 
 /*

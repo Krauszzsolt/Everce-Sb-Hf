@@ -4,31 +4,33 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule, MatDialogModule, MatToolbarModule } from '@angular/material';
+import { MatCardModule, MatDialogModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatDialogWrapperComponent } from './dialog/mat-dialog-wrapper.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MatDialogWrapperComponent],
   imports: [
     CommonModule,
-    MatFormFieldModule,
     MatSidenavModule,
     MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatToolbarModule,
     NgMatSearchBarModule,
     MatCardModule,
     LayoutModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   exports: [
-    MatFormFieldModule,
     MatSidenavModule,
     MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatToolbarModule,
     NgMatSearchBarModule,
@@ -36,7 +38,9 @@ import { FormsModule } from '@angular/forms';
     LayoutModule,
     MatDialogModule,
     MatDialogWrapperComponent,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   entryComponents: [MatDialogWrapperComponent],
 })
