@@ -102,6 +102,7 @@ CAFF_format_exception::CAFF_format_exception(const char* c) : code(c)
 std::istream& operator>>(std::istream& is, CAFF& caff)
 {
 	char inputbytes[8];
+	bool done = false;
 	while (!is.eof())
 	{
 		unsigned char blockId;
@@ -114,8 +115,15 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 		}
 		blockId = *(reinterpret_cast<unsigned char*>(inputbytes));
 
+
 		if (blockId < 1 || blockId > 3)
-			throw CAFF_format_exception("Wrong block ID");
+		{
+			if (done)
+				break;
+			else
+				throw CAFF_format_exception("Wrong block ID");
+		}
+			
 
 		is.read(inputbytes, 8);
 		blockLength = *(reinterpret_cast<unsigned char*>(inputbytes));
@@ -149,7 +157,7 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			is.read(inputbytes, 2);
 			y1 = *(reinterpret_cast<unsigned char*>(&inputbytes[0]));
 			y2 = *(reinterpret_cast<unsigned char*>(&inputbytes[1]));
-			
+				
 			caff.creator_date.year = (int)y2 * 256 + (int)y1;
 
 			is.read(inputbytes, 1);
@@ -183,6 +191,8 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 				caff.durations[i] = *(reinterpret_cast<unsigned long long*>(inputbytes));
 				is >> caff.ciffs[i];
 				i++;
+				if (i == caff.num_anim)
+					done = true;
 			}
 			else
 			{
