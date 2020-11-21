@@ -9,14 +9,24 @@
 
 int main()
 {
-    std::ifstream f("1.caff", std::ifstream::binary);
+    std::ifstream f("2.caff", std::ifstream::binary);
     unsigned long long size = 1000;
 
     PreviewProvider pp;
+    std::string s;
 
-    unsigned char* preview = pp.getPreviewOfCaff(f, size);
+    while (!f.eof())
+    {
+        char c;
+        f.read(&c, 1);
+        s += c;
+    }
 
-    std::ofstream g("out.bmp");
+    unsigned char* preview = new unsigned char[size * size * 4 + 54];
+
+    pp.getPreviewOfCaff(preview, s.c_str(), s.length(), size);
+
+    std::ofstream g("out.bmp", std::ifstream::binary);
 
     for (int i = 0; i < size * size * 4 + 54; i++)
     {

@@ -21,7 +21,7 @@ public:
 	CAFF& operator=(const CAFF& rhv);
 	CAFF& operator=(CAFF&& rhv);
 
-	unsigned char* getBitMapPreview(unsigned long long size);
+	void getBitMapPreview(unsigned char* bitmap, unsigned long long size);
 
 	friend std::istream& operator>>(std::istream& is, CAFF& caff);
 

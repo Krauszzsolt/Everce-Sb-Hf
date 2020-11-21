@@ -4,5 +4,5 @@
 class __declspec(dllexport) PreviewProvider : public IPreviewProvider
 {
 public:
-	unsigned char* getPreviewOfCaff(std::istream& is, unsigned long long size) override;
+	void getPreviewOfCaff(unsigned char* bitmap, const char* str, unsigned long long len, unsigned long long size) override;
 };
