@@ -4,5 +4,5 @@
 class __declspec(dllexport) IPreviewProvider
 {
 public:
-	virtual unsigned char* getPreviewOfCaff(std::istream& is, unsigned long long size) = 0;
+	virtual void getPreviewOfCaff(unsigned char* bitmap, const char* str, unsigned long long len, unsigned long long size) = 0;
 };
