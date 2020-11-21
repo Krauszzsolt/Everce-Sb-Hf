@@ -11,13 +11,13 @@ Date::Date() :
 
 }
 
-CAFF::CAFF() :
+CAFF::CAFF() : 
 	header_size(0),
-	num_anim(0),
-	creator_date(),
-	creator_len(0),
-	creator(),
-	durations(nullptr),
+	num_anim(0), 
+	creator_date(), 
+	creator_len(0), 
+	creator(), 
+	durations(nullptr), 
 	ciffs(nullptr)
 {
 }
@@ -27,7 +27,7 @@ CAFF::~CAFF()
 	delete[] ciffs;
 }
 
-CAFF::CAFF(const CAFF& rhv) :
+CAFF::CAFF(const CAFF& rhv):
 	header_size(rhv.header_size),
 	num_anim(rhv.num_anim),
 	creator_len(rhv.creator_len),
@@ -71,7 +71,7 @@ CAFF& CAFF::operator=(const CAFF& rhv)
 		ciffs[i] = rhv.ciffs[i];
 		durations[i] = rhv.durations[i];
 	}
-
+	
 	return *this;
 }
 
@@ -123,13 +123,13 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			else
 				throw CAFF_format_exception("Wrong block ID");
 		}
-
+			
 
 		is.read(inputbytes, 8);
 		blockLength = *(reinterpret_cast<unsigned char*>(inputbytes));
 
 		unsigned char y1, y2;
-		switch (blockId)
+ 		switch (blockId)
 		{
 		case 1:
 			if (blockLength != 20)
@@ -157,7 +157,7 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			is.read(inputbytes, 2);
 			y1 = *(reinterpret_cast<unsigned char*>(&inputbytes[0]));
 			y2 = *(reinterpret_cast<unsigned char*>(&inputbytes[1]));
-
+				
 			caff.creator_date.year = (int)y2 * 256 + (int)y1;
 
 			is.read(inputbytes, 1);
@@ -199,7 +199,7 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 				if (caff.header_size != 20)
 					throw CAFF_format_exception("Too many CIFFs in the CAFF file");
 			}
-
+			
 			break;
 		}
 	}
@@ -207,41 +207,39 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 	return is;
 }
 
-unsigned char* CAFF::getBitMapPreview(unsigned long long size)
+void CAFF::getBitMapPreview(unsigned char* bitmap, unsigned long long size)
 {
-	unsigned char* bitmap = new unsigned char[size * size * 4 + 54];
-
 	double* floatBitmap = new double[size * size * 4 + 54];
 
 	bitmap[0] = 66; //Signature 1st byte
 	bitmap[1] = 77; //Signature 2nd byte
 
 	*reinterpret_cast<int*>(&bitmap[2]) = size * size * 4 + 54; //File size
-
+	
 	*reinterpret_cast<int*>(&bitmap[6]) = 0; //Free space = 0
-
+	
 	*reinterpret_cast<int*>(&bitmap[10]) = 54; //Bitmap starting index
-
+	
 	*reinterpret_cast<int*>(&bitmap[14]) = 40; //Header size
-
+	
 	*reinterpret_cast<int*>(&bitmap[18]) = size; //Picture width
-
+	
 	*reinterpret_cast<int*>(&bitmap[22]) = size; //Picture height
-
+	
 	*reinterpret_cast<short*>(&bitmap[26]) = 1; //Display
-
+	
 	*reinterpret_cast<short*>(&bitmap[28]) = 32; //Colordepth
-
+	
 	*reinterpret_cast<int*>(&bitmap[30]) = 0; //Compression
-
+	
 	*reinterpret_cast<int*>(&bitmap[34]) = 0; //File size (0 with no compression)
-
+	
 	*reinterpret_cast<int*>(&bitmap[38]) = 4096; //Pixel/meter horizontal
-
+	
 	*reinterpret_cast<int*>(&bitmap[42]) = 4096; //Pixel/meter vertical
-
+	
 	*reinterpret_cast<int*>(&bitmap[46]) = 0; //Palette colors (0 by default)
-
+	
 	*reinterpret_cast<int*>(&bitmap[50]) = 0; //Used colors (0 by default)
 
 	for (int i = 0; i < size; i++)
@@ -303,11 +301,10 @@ unsigned char* CAFF::getBitMapPreview(unsigned long long size)
 
 		}
 	}
-
-	return bitmap;
+	delete[] floatBitmap;
 }
 
-PaddedCiffProxy::PaddedCiffProxy(CIFF& ciff) : ciff(ciff)
+PaddedCiffProxy::PaddedCiffProxy(CIFF& ciff): ciff(ciff)
 {
 	width = ciff.getWidth();
 	height = ciff.getHeight();
@@ -337,6 +334,6 @@ Pixel PaddedCiffProxy::getPixel(unsigned int i, unsigned int j)
 	{
 		return Pixel(0, 0, 0, 0);
 	}
-
+	
 	return ciff.getPixel(i - heightDiff, j - widthDiff);
 }

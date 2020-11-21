@@ -3,19 +3,8 @@
 #include "CAFF.h"
 #include <sstream>
 
-unsigned char* getPreviewOfCaff(const char* str, unsigned long long len, unsigned long long size)
+void getPreviewOfCaff(unsigned char* bitmap, const char* str, unsigned long long len, unsigned long long size)
 {
-	// test returning char array
-	// it works
-	/*unsigned char* buffer = new unsigned char[4];
-
-	buffer[0] = 'x';
-	buffer[1] = 'A';
-	buffer[2] = '7';
-	buffer[3] = 'e';
-
-	return buffer;*/
-
 	CAFF caff;
 	std::stringstream ss;
 
@@ -25,5 +14,26 @@ unsigned char* getPreviewOfCaff(const char* str, unsigned long long len, unsigne
 
 	ss >> caff;
 
-	return caff.getBitMapPreview(size);
+	unsigned long long arraysize = size * size * 4 + 54;
+
+	unsigned char* backwards = new unsigned char[arraysize];
+
+	caff.getBitMapPreview(backwards, size);
+
+	for (int i = 0; i < 54; i++)
+	{
+		bitmap[i] = backwards[i];
+	}
+
+	for (int i = 0; i < size * size; i++)
+	{
+		int foffset = i * 4 + 54;
+		int boffset = (size * size * 4 - 4) - i * 4 + 54;
+		for (int k = 0; k < 4; k++)
+		{
+			bitmap[foffset + k] = backwards[boffset + k];
+		}
+	}
+
+	delete[] backwards;
 }

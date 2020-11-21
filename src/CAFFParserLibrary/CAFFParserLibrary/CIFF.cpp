@@ -36,9 +36,9 @@ Pixel& Pixel::operator=(const Pixel& rhv)
 	return *this;
 }
 
-CIFF::CIFF() : header_size(0), content_size(0), width(0), height(0), pixels(nullptr), caption(), tags()
+CIFF::CIFF(): header_size(0), content_size(0), width(0), height(0), pixels(nullptr), caption(), tags()
 {
-
+	
 }
 
 CIFF::~CIFF()
@@ -46,12 +46,12 @@ CIFF::~CIFF()
 	delete pixels;
 }
 
-CIFF::CIFF(const CIFF& rhv) :
-	header_size(rhv.header_size),
+CIFF::CIFF(const CIFF& rhv): 
+	header_size(rhv.header_size), 
 	content_size(rhv.content_size),
 	width(rhv.width),
 	height(rhv.height),
-	caption(rhv.caption),
+	caption(rhv.caption), 
 	tags(rhv.tags)
 {
 	pixels = new Pixel[width * height];
@@ -124,9 +124,9 @@ Pixel& CIFF::getPixel(unsigned int i, unsigned int j)
 	throw std::out_of_range("CIFF::getPixel out of range");
 }
 
-CIFF_format_exception::CIFF_format_exception(const char* c) : code(c)
+CIFF_format_exception::CIFF_format_exception(const char* c): code(c)
 {
-
+	
 }
 
 
@@ -143,7 +143,7 @@ std::istream& operator>>(std::istream& is, CIFF& ciff)
 
 	is.read(inputbytes, 8);
 	ciff.content_size = *((unsigned long long*) inputbytes);
-
+	
 	is.read(inputbytes, 8);
 	ciff.width = *((unsigned long long*) inputbytes);
 

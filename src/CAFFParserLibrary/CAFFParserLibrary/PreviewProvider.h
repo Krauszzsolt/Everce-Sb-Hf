@@ -8,4 +8,5 @@
 #endif
 
 
-extern "C" CAFFPARSERLIBRARY_API unsigned char* getPreviewOfCaff(const char* str, unsigned long long len, unsigned long long size);
+extern "C" CAFFPARSERLIBRARY_API void getPreviewOfCaff(unsigned char* bitmap, const char* str, unsigned long long len, unsigned long long size);
+
