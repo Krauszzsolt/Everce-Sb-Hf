@@ -1,10 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 
 namespace CAFFTest
 {
@@ -21,8 +17,8 @@ namespace CAFFTest
             var inputFile = File.ReadAllBytes("../../../1.caff");
             var previewAsByteArray = new byte[size * size * 4 + 54];
 
-            IntPtr filePtr = Marshal.AllocHGlobal(sizeof(int) * inputFile.Length);
-            IntPtr previewPtr = Marshal.AllocHGlobal(sizeof(int) * (size * size * 4 + 54));
+            IntPtr filePtr = Marshal.AllocHGlobal(sizeof(byte) * inputFile.Length);
+            IntPtr previewPtr = Marshal.AllocHGlobal(sizeof(byte) * (size * size * 4 + 54));
             
             Marshal.Copy(inputFile, 0, filePtr, inputFile.Length);
 
@@ -37,9 +33,7 @@ namespace CAFFTest
             File.WriteAllBytes("../../../previews/preview1.bmp", previewAsByteArray);
 
             Console.WriteLine("Done.");
-
         }
-
 
     }
 }
