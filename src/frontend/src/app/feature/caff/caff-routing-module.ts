@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CaffListComponent,
   },
   {
-    path: 'item',
+    path: ':id',
     component: CaffItemComponent,
   }
 ];

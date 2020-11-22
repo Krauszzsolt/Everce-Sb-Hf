@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 import { AuthService } from '@src/app/core/service/auth.service';
 import { AnimationDto, ApplicationUserDto } from '@src/app/shared/client';
 import { Observable } from 'rxjs';
@@ -13,7 +14,7 @@ import { CaffService } from '../service/caff.service';
   styleUrls: ['./caff-list.component.scss'],
 })
 export class CaffListComponent implements OnInit {
-  constructor(public dialog: MatDialog, private caffService: CaffService, private authService: AuthService) {}
+  constructor(public dialog: MatDialog, private caffService: CaffService, private authService: AuthService, private router: Router) {}
   public animations$: Observable<AnimationDto[]>;
   public modifiedTittle = '';
   public API_BASE_URL = environment.API_BASE_URL;
@@ -52,5 +53,9 @@ export class CaffListComponent implements OnInit {
         console.log(error.error.message);
       }
     );
+  }
+
+  public detail(id: number) {
+    this.router.navigateByUrl(`caff/${id}`);
   }
 }

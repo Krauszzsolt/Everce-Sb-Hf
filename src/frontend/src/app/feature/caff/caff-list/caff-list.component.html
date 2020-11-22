@@ -18,6 +18,8 @@
         <mat-card-actions><button mat-button *ngIf="(user | async).role === 'admin'" class="delete-button" (click)="delete(animation.id)">Delete</button></mat-card-actions>
 
         <!-- Sima felhasználó esetén -->
+        <mat-card-actions><button mat-button class="download-button" (click)="detail(animation.id)">Details</button></mat-card-actions> 
+        <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button">Download</button></mat-card-actions>
       </mat-card-content>
     </mat-card>
