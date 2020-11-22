@@ -10,7 +10,6 @@ import { CaffService } from './service/caff.service';
 @NgModule({
   declarations: [CaffListComponent, CaffItemComponent, CaffAddDialogComponent],
   entryComponents: [CaffAddDialogComponent],
-  providers: [CaffService],
   imports: [CommonModule, CaffRoutingModule, SharedModule],
 })
 export class CaffModule {}

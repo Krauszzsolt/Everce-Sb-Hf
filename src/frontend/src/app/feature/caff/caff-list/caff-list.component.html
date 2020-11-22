@@ -6,7 +6,7 @@
 
   <div class="row">
     <mat-card *ngFor="let animation of animations$ | async;  index as i">
-      <img class="cover" [src]="API_BASE_URL + animation.animation" alt="icon" />
+      <img class="cover" [src]="API_BASE_URL + animation.previewImage" alt="icon" />
       <mat-card-title class="title">
         {{ animation.title }}
         <!-- Admin flehanszáló esetén -->
