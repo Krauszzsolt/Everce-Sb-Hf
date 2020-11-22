@@ -17,6 +17,6 @@ export class MatDialogWrapperComponent implements OnInit {
   add() {}
 
   close() {
-    this.dialogRef.close('Pizza!');
+    this.dialogRef.close('');
   }
 }

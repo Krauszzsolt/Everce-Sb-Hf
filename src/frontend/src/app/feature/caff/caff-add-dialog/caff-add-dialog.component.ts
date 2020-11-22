@@ -93,7 +93,7 @@ export class CaffAddDialogComponent implements OnInit {
     //this.editService.editNewstoryPost({ title: this.f.title.value, description: this.f.description.value, tags: this.f.tags.value.map(x => <TagDto>{ value: x })})
     this.animationsService.animationsAddPost(this.f.title.value, this.f.coverImageSource.value).subscribe({
       next: () => {
-        this.router.navigate(['/my-stories']);
+        this.dialogRef.close();
       },
       error: (error) => {
         this.error = error;

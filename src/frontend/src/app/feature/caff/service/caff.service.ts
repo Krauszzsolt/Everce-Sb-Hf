@@ -39,4 +39,8 @@ export class CaffService {
   public comment(id: number, body?: string): Observable<CommentDto> {
     return this.animationsService.animationsIdCommentPost(id, body);
   }
+
+  public download(id: number, body?: string) {
+    // return this.animationsService.(id, body);
+  }
 }
