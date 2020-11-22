@@ -41,6 +41,7 @@ namespace BLL.Services
             var newFileName = Path.GetFileName($"{Guid.NewGuid()}.{fileName.Split(".").Last()}");
             using (FileStream fstream = new FileStream(Path.Combine(path, newFileName), FileMode.Create))
             {
+                stream.Seek(0, SeekOrigin.Begin);
                 await stream.CopyToAsync(fstream);
             }
 

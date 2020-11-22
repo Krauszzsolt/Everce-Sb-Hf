@@ -2,9 +2,12 @@
 using API.Controllers.Base;
 using BLL.DTOs;
 using BLL.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -61,7 +64,7 @@ namespace API.Controllers
         /// <param name="newTitle">New title of the animation</param>
         /// <returns>Updated animation</returns>
         [HttpPost("{id}/edit")]
-        [Authorize(Role: "Administrator")]
+        [Authorize("Administrator")]
         public async Task<ActionResult<AnimationDto>> UpdateAnimation(long id, [FromBody] string newTitle)
         {
             return await _animationService.UpdateAnimation(new AnimationDto()
@@ -102,6 +105,21 @@ namespace API.Controllers
                 Timestamp = DateTime.Now,
                 Content = content,
             });
+        }
+
+        /// <summary>
+        /// Download an animation
+        /// </summary>
+        /// <param name="id">Id of the animation</param>
+        /// <param name="_env">Web Host environment from DI</param>
+        /// <returns>Animation as file</returns>
+        [HttpGet("{id}/download")]
+        //[Authorize]
+        public async Task<ActionResult> DownloadAnimation(long id, [FromServices] IWebHostEnvironment _env)
+        {
+            var fileName = await _animationService.GetAnimationFileName(id);
+            var path = Path.Combine(_env.WebRootPath, "animations", fileName);
+            return PhysicalFile(path, MimeTypes.GetMimeType(path), Path.GetFileName(path));
         }
     }
 }
