@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CaffAddDialogComponent } from '../caff-add-dialog/caff-add-dialog.component';
 import { CaffService } from '../service/caff.service';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-caff-list',
   templateUrl: './caff-list.component.html',
@@ -60,6 +60,18 @@ export class CaffListComponent implements OnInit {
       (error) => {
         console.log(error.error.message);
       }
+    );
+  }
+
+  public download(id: number) {
+    this.caffService.download(id).subscribe(
+      (resp) => {
+        saveAs(resp, 'SomeFileDownloadName.caff');
+        console.log(resp);
+      },
+      // (error) => {
+      //   console.log(error.error.message);
+      // }
     );
   }
 

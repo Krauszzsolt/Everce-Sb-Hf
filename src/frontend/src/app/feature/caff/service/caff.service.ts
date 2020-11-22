@@ -40,7 +40,7 @@ export class CaffService {
     return this.animationsService.animationsIdCommentPost(id, body);
   }
 
-  public download(id: number, body?: string) {
-    // return this.animationsService.(id, body);
+  public download(id: number) {
+    return this.animationsService.animationsIdDownloadGet(id);
   }
 }

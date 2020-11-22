@@ -114,7 +114,7 @@ namespace API.Controllers
         /// <returns>Animation as file</returns>
         [HttpGet("{id}/download")]
         //[Authorize]
-        public async Task<ActionResult> DownloadAnimation(long id, [FromServices] IWebHostEnvironment _env)
+        public async Task<PhysicalFileResult> DownloadAnimation(long id, [FromServices] IWebHostEnvironment _env)
         {
             var fileName = await _animationService.GetAnimationFileName(id);
             var path = Path.Combine(_env.WebRootPath, "animations", fileName);
