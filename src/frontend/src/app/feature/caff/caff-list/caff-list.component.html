@@ -5,17 +5,17 @@
   </div>
 
   <div class="row">
-    <mat-card *ngFor="let animation of animations$ | async">
+    <mat-card *ngFor="let animation of animations$ | async;  index as i">
       <img class="cover" [src]="API_BASE_URL + animation.animation" alt="icon" />
       <mat-card-title class="title">
         {{ animation.title }}
         <!-- Admin flehanszáló esetén -->
-        <input *ngIf="(user | async).role === 'admin'" matInput placeholder="New title" class="title-input" [(ngModel)]="modifiedTittle" />
-        <button *ngIf="(user | async).role === 'admin'" mat-button class="modify-button" (click)="delete(animation.id, modifiedTittle)">Modify</button>
+        <input *ngIf="(user | async).role === 'Administrator'" matInput placeholder="New title" class="title-input" [(ngModel)]="modifiedTittle[i]" />
+        <button *ngIf="(user | async).role === 'Administrator'" mat-button class="modify-button" (click)="modify(animation.id, modifiedTittle[i])">Modify</button>
       </mat-card-title>
       <mat-card-content class="content">
         <!-- Admin felhasnzáló esetén -->
-        <mat-card-actions><button mat-button *ngIf="(user | async).role === 'admin'" class="delete-button" (click)="delete(animation.id)">Delete</button></mat-card-actions>
+        <mat-card-actions><button mat-button *ngIf="(user | async).role === 'Administrator'" class="delete-button" (click)="delete(animation.id)">Delete</button></mat-card-actions>
 
         <!-- Sima felhasználó esetén -->
         <mat-card-actions><button mat-button class="download-button" (click)="detail(animation.id)">Details</button></mat-card-actions> 

@@ -16,7 +16,7 @@ import { CaffService } from '../service/caff.service';
 export class CaffListComponent implements OnInit {
   constructor(public dialog: MatDialog, private caffService: CaffService, private authService: AuthService, private router: Router) {}
   public animations$: Observable<AnimationDto[]>;
-  public modifiedTittle = '';
+  public modifiedTittle = [];
   public API_BASE_URL = environment.API_BASE_URL;
   public user: Observable<ApplicationUserDto> = new Observable();
   ngOnInit() {
@@ -34,7 +34,7 @@ export class CaffListComponent implements OnInit {
   }
 
   public modify(id: number, body?: string) {
-    this.caffService.modify(id, body).subscribe(
+    this.caffService.modify(id, `"${body}"`).subscribe(
       (resp) => {
         this.animations$ = this.caffService.getAll();
       },
