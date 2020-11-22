@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnimationDto } from '@src/app/shared/client';
+import { LoadingService } from '@src/app/shared/service/loading.service';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 import { CaffService } from '../service/caff.service';
@@ -11,7 +12,13 @@ import { CaffService } from '../service/caff.service';
   styleUrls: ['./caff-item.component.scss'],
 })
 export class CaffItemComponent implements OnInit {
-  constructor(private router: Router, private caffService: CaffService, private route: ActivatedRoute) {}
+  constructor(private router: Router, private caffService: CaffService, private route: ActivatedRoute, private loadingService: LoadingService) {
+    this.loadingService.getisLoading().subscribe((v) => {
+      this.isLoading = v;
+    });
+  }
+
+  isLoading;
   public animation$: Observable<AnimationDto>;
   public comment: '';
   public API_BASE_URL = environment.API_BASE_URL;
