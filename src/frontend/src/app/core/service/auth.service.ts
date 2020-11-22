@@ -10,7 +10,6 @@ import { ApplicationUserDto, LoginDto, RegisterDto, UsersService } from 'src/app
   providedIn: 'root',
 })
 export class AuthService {
-  cachedRequests: Array<HttpRequest<any>> = [];
 
   private currentUserSubject: BehaviorSubject<ApplicationUserDto>;
 
