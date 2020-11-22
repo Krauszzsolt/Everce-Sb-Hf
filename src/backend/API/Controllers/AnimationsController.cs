@@ -81,10 +81,9 @@ namespace API.Controllers
         /// <returns></returns>
         [HttpPost("{id}/delete")]
         [Authorize("Administrator")]
-        public async Task<ActionResult> DeleteAnimation(long id)
+        public async Task DeleteAnimation(long id)
         {
             await _animationService.DeleteAnimation(id);
-            return Ok("Animation deleted successfully.");
         }
 
 

@@ -57,9 +57,9 @@ export class CaffListComponent implements OnInit {
       (resp) => {
         this.animations$ = this.caffService.getAll();
       },
-      // (error) => {
-      //   console.log(error.error.message);
-      // }
+      (error) => {
+        console.log(error.error.message);
+      }
     );
   }
 
