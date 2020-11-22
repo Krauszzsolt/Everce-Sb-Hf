@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  basePath: "./../../../../frontend.Api",  
+  basePath: './../../../../frontend.Api',
+  PRE_VIEW_BASE: './@app/../../../backend/API/wwwroot',
   API_BASE_URL: 'https://localhost:44364',
 };
 

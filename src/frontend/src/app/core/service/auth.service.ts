@@ -19,29 +19,15 @@ export class AuthService {
   }
 
   public get currentUserValue(): ApplicationUserDto {
-    console.log('currentUserValue', this.currentUserSubject.value);
     return this.currentUserSubject.value;
   }
 
-  public collectFailedRequest(request): void {
-    this.cachedRequests.push(request);
-  }
-
-  public retryFailedRequests(): void {
-    // retry the requests. this method can
-    // be called after the token is refreshed
+  public getUser(): Observable<ApplicationUserDto> {
+    return this.currentUserSubject.asObservable();
   }
 
   public getToken(): string {
     return localStorage.getItem('token');
-  }
-
-  public isAuthenticated(): boolean {
-    // get the token
-    const token = this.getToken();
-    // return a boolean reflecting
-    // whether or not the token is expired
-    return tokenNotExpired(null, token);
   }
 
   public login(loginDto: LoginDto): Observable<ApplicationUserDto> {
@@ -64,7 +50,4 @@ export class AuthService {
     );
   }
 
-  // public test(): Observable<UserDto[]> {
-  //   return this.ClienService.user_GetAll();
-  // }
 }
