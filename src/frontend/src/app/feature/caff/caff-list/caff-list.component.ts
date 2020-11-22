@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from '@src/app/core/service/auth.service';
@@ -19,10 +19,10 @@ export class CaffListComponent implements OnInit {
   public modifiedTittle = '';
   public API_BASE_URL = environment.API_BASE_URL;
   public user: Observable<ApplicationUserDto> = new Observable();
-
   ngOnInit() {
     this.animations$ = this.caffService.getAll();
     this.user = this.authService.getUser();
+    this.search();
   }
 
   openDialog() {
@@ -42,6 +42,12 @@ export class CaffListComponent implements OnInit {
         console.log(error.error.message);
       }
     );
+  }
+
+  public search() {
+    this.caffService.getSearchTerm().subscribe((x) => {
+      this.animations$ = this.caffService.getAll();
+    });
   }
 
   public delete(id: number) {

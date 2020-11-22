@@ -5,7 +5,7 @@
   
   
   <!-- Bejelentkezett felhasználó esetén -->
-  <mat-search-bar></mat-search-bar>
+  <mat-search-bar  [(ngModel)]="search" (keyup)='searchEvetn()'></mat-search-bar>
   <button *ngIf="(user | async)" mat-button [routerLink]="['/login']">Logout</button>
 
   <!-- Anonim felhasználó esetén -->

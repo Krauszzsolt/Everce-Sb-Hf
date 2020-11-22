@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { debounceTime, shareReplay } from 'rxjs/operators';
 import { AnimationDto, AnimationsService, CommentDto } from 'src/app/shared/client';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CaffService {
-  constructor(private animationsService: AnimationsService) {}
+  constructor(private animationsService: AnimationsService) {
+    this.searchTrem = new BehaviorSubject<string>('');
+  }
+
+  private searchTrem: BehaviorSubject<string>;
+
+  public setSearchTerm(searchTrem) {
+    this.searchTrem.next(searchTrem);
+  }
+
+  public getSearchTerm(): Observable<string> {
+    return this.searchTrem.asObservable().pipe(debounceTime(500));
+  }
 
   public get(id: number): Observable<AnimationDto> {
-    return this.animationsService.animationsIdGet(id).pipe(
-      shareReplay(1)
-    );
+    return this.animationsService.animationsIdGet(id).pipe(shareReplay(1));
   }
-  public getAll(searchTerm?: string): Observable<AnimationDto[]> {
-    return this.animationsService.animationsGet(searchTerm);
+  public getAll(): Observable<AnimationDto[]> {
+    return this.animationsService.animationsGet(this.searchTrem.value);
   }
   public add(title?: string, animationFile?: Blob): Observable<AnimationDto> {
     return this.animationsService.animationsAddPost(title, animationFile);
