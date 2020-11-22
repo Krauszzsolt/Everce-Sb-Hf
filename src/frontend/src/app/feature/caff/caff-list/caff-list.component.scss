@@ -15,7 +15,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     .add-button{
-        background: $orange-2;
+        // background: $orange-2;
+        background: $orange;
+        color: $white;
         align-self: center;
     }
 }
