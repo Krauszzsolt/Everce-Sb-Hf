@@ -1,4 +1,6 @@
 @import 'bulma/css/bulma.min.css';
+@import '../../../app.component.scss';
+
 h1 {
   font-size: 1.5rem;
 }
@@ -37,4 +39,29 @@ h1 {
 .side-buffer {
   margin-right: 1rem;
   margin-bottom: 0.5rem;
+}
+
+
+.mat-card-content{
+  div{
+    padding: 0.5rem;
+  }
+  button{
+    background-color: $orange;
+  }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color: $orange;
+    }
+    .mat-form-field-ripple {
+        background-color: $orange;
+    }
+    .mat-form-field-required-marker {
+        color:$orange;
+    }
+    .mat-input-element {
+        color: $white;
+    }
 }
