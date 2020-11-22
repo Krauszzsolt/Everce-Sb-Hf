@@ -16,14 +16,11 @@ namespace BLL.DTOs
             Id = _animation.Id;
             Title = _animation.Title;
             PreviewImage = _animation.PreviewImageFile;
-            Animation = _animation.AnimationFile;
         }
 
         public long Id { get; set; }
 
         public string Title { get; set; }
-
-        public string Animation { get; set; }
 
         public string PreviewImage { get; set; }
         

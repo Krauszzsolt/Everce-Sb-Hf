@@ -37,7 +37,6 @@ namespace BLL.Services
             {
                 Id = a.Id,
                 Title = a.Title,
-                Animation = a.AnimationFile,
                 PreviewImage = a.PreviewImageFile,
                 Comments = a.Comments.Select(c => new CommentDto()
                 {
@@ -75,7 +74,7 @@ namespace BLL.Services
             {
                 Title = newAnimation.Title,
                 PreviewImageFile = $"/{previewDir}/{preViewFileName}",
-                AnimationFile = $"/{animationDir}/{animationFileName}"
+                AnimationFile = animationFileName
             };
             _context.Animations.Add(animationToAdd);
             await _context.SaveChangesAsync();
@@ -83,6 +82,7 @@ namespace BLL.Services
             var result = await _context.Animations.FindAsync(animationToAdd.Id);
             return new AnimationDto(result);
         }
+        
         public async Task<AnimationDto> UpdateAnimation(AnimationDto updatedAnimation)
         {
             var toUpdate = await _context.Animations.FindAsync(updatedAnimation.Id);
@@ -123,5 +123,10 @@ namespace BLL.Services
             return result;
         }
 
+        public async Task<string> GetAnimationFileName(long animationId)
+        {
+            var animation = await _context.Animations.FindAsync(animationId);
+            return animation.AnimationFile;
+        }
     }
 }
