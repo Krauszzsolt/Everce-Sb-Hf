@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginDto).subscribe(
       (resp) => {
-        console.log(resp);
         this.router.navigateByUrl('/caff');
       },
       (error) => {

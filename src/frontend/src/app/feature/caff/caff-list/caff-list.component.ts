@@ -29,14 +29,14 @@ export class CaffListComponent implements OnInit {
     const dialogRef = this.dialog.open(CaffAddDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      this.animations$ = this.caffService.getAll();
     });
   }
 
   public modify(id: number, body?: string) {
     this.caffService.modify(id, body).subscribe(
       (resp) => {
-        console.log('siker');
+        this.animations$ = this.caffService.getAll();
       },
       (error) => {
         console.log(error.error.message);
@@ -47,7 +47,7 @@ export class CaffListComponent implements OnInit {
   public delete(id: number) {
     this.caffService.delete(id).subscribe(
       (resp) => {
-        console.log('siker');
+        this.animations$ = this.caffService.getAll();
       },
       (error) => {
         console.log(error.error.message);

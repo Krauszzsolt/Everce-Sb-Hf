@@ -33,11 +33,9 @@ export class AuthService {
   public login(loginDto: LoginDto): Observable<ApplicationUserDto> {
     return this.usersService.usersAuthenticatePost(loginDto).pipe(
       tap((x) => {
-        console.log(x);
         localStorage.setItem('token', x.token);
         localStorage.setItem('currentUser', JSON.stringify(x));
         this.currentUserSubject.next(x);
-        console.log(this.currentUserValue);
       })
     );
   }

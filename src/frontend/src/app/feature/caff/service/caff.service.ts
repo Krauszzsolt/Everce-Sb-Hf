@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 import { AnimationDto, AnimationsService, CommentDto } from 'src/app/shared/client';
 
 @Injectable({
@@ -9,7 +10,9 @@ export class CaffService {
   constructor(private animationsService: AnimationsService) {}
 
   public get(id: number): Observable<AnimationDto> {
-    return this.animationsService.animationsIdGet(id);
+    return this.animationsService.animationsIdGet(id).pipe(
+      shareReplay(1)
+    );
   }
   public getAll(searchTerm?: string): Observable<AnimationDto[]> {
     return this.animationsService.animationsGet(searchTerm);

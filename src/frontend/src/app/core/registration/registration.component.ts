@@ -24,7 +24,6 @@ export class RegistrationComponent implements OnInit {
   registration() {
     this.authService.register(this.registerDto).subscribe(
       (resp) => {
-        console.log(resp);
         this.router.navigateByUrl('/caff')
       },
       (error) => {
