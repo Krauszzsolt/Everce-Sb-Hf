@@ -9,7 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatDialogWrapperComponent } from './dialog/mat-dialog-wrapper.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [MatDialogWrapperComponent],
   imports: [
@@ -26,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    FlexLayoutModule
   ],
   exports: [
     MatSidenavModule,
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    FlexLayoutModule
   ],
   entryComponents: [MatDialogWrapperComponent],
 })
