@@ -6,7 +6,7 @@ namespace CAFFTest
 {
     class Program
     {
-        [DllImport("../../../../../CAFFParserLibrary/x64/Debug/CAFFParserLibrary.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+        [DllImport("../../../../../CAFFParserLibrary/x64/Release/CAFFParserLibrary.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         public static extern void getPreviewOfCaff(IntPtr preview, IntPtr file, long len, long size);
 
         static void Main(string[] args)

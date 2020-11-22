@@ -1,10 +1,9 @@
 ﻿using BLL.DTOs;
-using BLL.Services;
 using DAL.Data;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,12 +55,26 @@ namespace BLL.Services
         public async Task<AnimationDto> AddAnimation(NewAnimationDto newAnimation)
         {
             var animationDir = "animations";
-            var animationFileName = await _fileManager.SaveFile(newAnimation.AnimationFile, animationDir);
+            var previewDir = "previews";
+            var animationFileName = string.Empty;
+            var preViewFileName = string.Empty;
+
+            using (var animationStream = new MemoryStream())
+            {
+                await newAnimation.AnimationFile.CopyToAsync(animationStream);
+
+                animationFileName = await _fileManager.SaveFile(animationStream, newAnimation.AnimationFile.FileName, animationDir);
+                
+                var previewFile = _fileManager.GeneratePreview(animationStream.ToArray());
+
+                using var preViewStream = new MemoryStream(previewFile);
+                preViewFileName = await _fileManager.SaveFile(preViewStream, "preview.bmp", previewDir);
+            }
 
             var animationToAdd = new Animation()
             {
                 Title = newAnimation.Title,
-                //PreviewImageFile = ,
+                PreviewImageFile = $"/{previewDir}/{preViewFileName}",
                 AnimationFile = $"/{animationDir}/{animationFileName}"
             };
             _context.Animations.Add(animationToAdd);
