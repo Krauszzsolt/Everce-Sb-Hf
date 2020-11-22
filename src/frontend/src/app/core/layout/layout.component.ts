@@ -21,4 +21,8 @@ export class LayoutComponent implements OnInit {
   public searchEvetn() {
     this.caffService.setSearchTerm(this.search);
   }
+
+  public logout() {
+    this.authService.logout();
+  }
 }

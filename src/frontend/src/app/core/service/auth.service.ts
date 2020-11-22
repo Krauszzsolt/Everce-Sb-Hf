@@ -1,6 +1,6 @@
 import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,10 +10,9 @@ import { ApplicationUserDto, LoginDto, RegisterDto, UsersService } from 'src/app
   providedIn: 'root',
 })
 export class AuthService {
-
   private currentUserSubject: BehaviorSubject<ApplicationUserDto>;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<ApplicationUserDto>(JSON.parse(localStorage.getItem('currentUser')));
   }
 
@@ -42,9 +41,16 @@ export class AuthService {
   public register(registerDto: RegisterDto): Observable<any> {
     return this.usersService.usersRegisterPost(registerDto).pipe(
       tap((x) => {
-        console.log(x);
+        localStorage.setItem('token', x.token);
+        localStorage.setItem('currentUser', JSON.stringify(x));
       })
     );
   }
 
+  public logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(undefined);
+    this.router.navigateByUrl('login');
+  }
 }
