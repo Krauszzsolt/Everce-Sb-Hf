@@ -1,13 +1,15 @@
 <div class="container">
-  <h1>{{ (animation$ | async).title }}</h1>
-  <img [src]="API_BASE_URL + (animation$ | async).previewImage" alt="icon" />
+  <ng-container *ngIf="(animation$ | async)">
+    <h1>{{ (animation$ | async).title }}</h1>
+  </ng-container>
+  <img *ngIf="(animation$ | async)" [src]="API_BASE_URL + (animation$ | async).previewImage" alt="icon" />
 
   <div class="comments">
     <div class="row">
       <input matInput placeholder="New comment" class="title-input" [(ngModel)]="comment" />
       <button mat-button class="comment-button" (click)="addComment()">Comment</button>
     </div>
-    <ng-container *ngIf="!isLoading">
+    <ng-container *ngIf="(animation$ | async)">
       <div *ngFor="let comment of (animation$ | async).comments">
         {{ comment.content }} <span>/{{ comment.authorName }}/</span>
       </div>

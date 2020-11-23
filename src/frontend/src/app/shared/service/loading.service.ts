@@ -1,3 +1,4 @@
+import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,13 +7,22 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LoadingService {
   private isLoading: BehaviorSubject<boolean>;
+  private requests: HttpRequest<any>[] = [];
 
   constructor() {
     this.isLoading = new BehaviorSubject<boolean>(false);
   }
 
-  public get isLoadingValue(): boolean {
-    return this.isLoading.value;
+  public pushRequest(request) {
+    this.requests.push(request);
+  }
+
+  removeRequest(req: HttpRequest<any>) {
+    const i = this.requests.indexOf(req);
+    if (i >= 0) {
+      this.requests.splice(i, 1);
+    }
+    this.isLoading.next(this.requests.length > 0);
   }
 
   public getisLoading(): Observable<boolean> {

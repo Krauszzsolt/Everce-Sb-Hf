@@ -25,7 +25,7 @@ export class CaffService {
     return this.animationsService.animationsIdGet(id).pipe(shareReplay(1));
   }
   public getAll(): Observable<AnimationDto[]> {
-    return this.animationsService.animationsGet(this.searchTrem.value);
+    return this.animationsService.animationsGet(this.searchTrem.value).pipe(shareReplay(1));
   }
   public add(title?: string, animationFile?: Blob): Observable<AnimationDto> {
     return this.animationsService.animationsAddPost(title, animationFile);

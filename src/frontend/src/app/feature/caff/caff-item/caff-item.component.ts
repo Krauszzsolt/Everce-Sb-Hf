@@ -14,6 +14,7 @@ import { CaffService } from '../service/caff.service';
 export class CaffItemComponent implements OnInit {
   constructor(private router: Router, private caffService: CaffService, private route: ActivatedRoute, private loadingService: LoadingService) {
     this.loadingService.getisLoading().subscribe((v) => {
+      console.log(v)
       this.isLoading = v;
     });
   }
