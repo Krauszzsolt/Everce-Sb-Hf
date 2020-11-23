@@ -90,7 +90,6 @@ export class CaffAddDialogComponent implements OnInit {
     }
 
     this.loading = true;
-    //this.editService.editNewstoryPost({ title: this.f.title.value, description: this.f.description.value, tags: this.f.tags.value.map(x => <TagDto>{ value: x })})
     this.animationsService.animationsAddPost(this.f.title.value, this.f.coverImageSource.value).subscribe({
       next: () => {
         this.dialogRef.close();

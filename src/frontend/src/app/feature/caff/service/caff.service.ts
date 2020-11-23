@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, shareReplay } from 'rxjs/operators';
 import { AnimationDto, AnimationsService, CommentDto } from 'src/app/shared/client';
@@ -7,7 +9,7 @@ import { AnimationDto, AnimationsService, CommentDto } from 'src/app/shared/clie
   providedIn: 'root',
 })
 export class CaffService {
-  constructor(private animationsService: AnimationsService) {
+  constructor(private animationsService: AnimationsService, protected httpClient: HttpClient) {
     this.searchTrem = new BehaviorSubject<string>('');
   }
 
@@ -41,6 +43,9 @@ export class CaffService {
   }
 
   public download(id: number) {
-    return this.animationsService.animationsIdDownloadGet(id);
+    // return this.animationsService.animationsIdDownloadGet(id);
+    return this.httpClient.get<any>(`${environment.API_BASE_URL}/Animations/${id}/download`, {
+      responseType: <any>'blob',
+    });
   }
 }

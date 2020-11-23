@@ -66,12 +66,12 @@ export class CaffListComponent implements OnInit {
   public download(id: number) {
     this.caffService.download(id).subscribe(
       (resp) => {
-        saveAs(resp, 'SomeFileDownloadName.caff');
+        saveAs(resp, 'caff-file.caff');
         console.log(resp);
       },
-      // (error) => {
-      //   console.log(error.error.message);
-      // }
+      (error) => {
+        console.log(error.error.message);
+      }
     );
   }
 
