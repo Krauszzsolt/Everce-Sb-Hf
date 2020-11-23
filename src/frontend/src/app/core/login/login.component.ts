@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginDto } from 'src/app/shared/client/model/models';
 import { AuthService } from '../service/auth.service';
 
@@ -8,7 +9,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   loginDto: LoginDto = {
     username: '',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginDto).subscribe(
       (resp) => {
-        console.log(resp);
+        this.router.navigateByUrl('/caff');
       },
       (error) => {
         console.log(error);

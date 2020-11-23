@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RegisterDto } from 'src/app/shared/client';
 import { AuthService } from '../service/auth.service';
 
@@ -16,14 +17,14 @@ export class RegistrationComponent implements OnInit {
 
   errorMessage: string = undefined;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   registration() {
     this.authService.register(this.registerDto).subscribe(
       (resp) => {
-        console.log(resp);
+        this.router.navigateByUrl('/caff')
       },
       (error) => {
         console.log(error);

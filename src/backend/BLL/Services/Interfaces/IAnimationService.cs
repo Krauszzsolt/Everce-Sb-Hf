@@ -18,5 +18,6 @@ namespace BLL.Services
 
         Task<CommentDto> AddComment(CommentDto newComment);
 
+        Task<string> GetAnimationFileName(long animationId);
     }
 }

@@ -1,14 +1,17 @@
 <mat-toolbar>
   <span [routerLink]="['/caff']">Caff Shop</span>
+  <span *ngIf="(user | async)" class="user-name">{{(user | async).userName}}</span>
   <span class="example-spacer"></span>
   
+  
   <!-- Bejelentkezett felhasználó esetén -->
-  <mat-search-bar></mat-search-bar>
-  <button mat-button [routerLink]="['/login']">Logout</button>
+  <mat-search-bar  [(ngModel)]="search" (keyup)='searchEvetn()'></mat-search-bar>
+  <button *ngIf="(user | async)" mat-button (click)="logout()">Logout</button>
 
   <!-- Anonim felhasználó esetén -->
-  <button mat-button [routerLink]="['/login']" > Login </button>
-  <button mat-button [routerLink]="['/registration']">Registration</button>
+  <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']" > Login </button>
+  <button *ngIf="!(user | async)" mat-button [routerLink]="['/registration']">Registration</button>
 
 </mat-toolbar>
 <router-outlet></router-outlet>
+<app-spinner></app-spinner>

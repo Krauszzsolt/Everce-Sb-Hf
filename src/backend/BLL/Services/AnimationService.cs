@@ -1,10 +1,9 @@
 ﻿using BLL.DTOs;
-using BLL.Services;
 using DAL.Data;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,7 +37,6 @@ namespace BLL.Services
             {
                 Id = a.Id,
                 Title = a.Title,
-                Animation = a.AnimationFile,
                 PreviewImage = a.PreviewImageFile,
                 Comments = a.Comments.Select(c => new CommentDto()
                 {
@@ -56,13 +54,27 @@ namespace BLL.Services
         public async Task<AnimationDto> AddAnimation(NewAnimationDto newAnimation)
         {
             var animationDir = "animations";
-            var animationFileName = await _fileManager.SaveFile(newAnimation.AnimationFile, animationDir);
+            var previewDir = "previews";
+            var animationFileName = string.Empty;
+            var preViewFileName = string.Empty;
+
+            using (var animationStream = new MemoryStream())
+            {
+                await newAnimation.AnimationFile.CopyToAsync(animationStream);
+
+                animationFileName = await _fileManager.SaveFile(animationStream, newAnimation.AnimationFile.FileName, animationDir);
+                
+                var previewFile = _fileManager.GeneratePreview(animationStream.ToArray());
+
+                using var preViewStream = new MemoryStream(previewFile);
+                preViewFileName = await _fileManager.SaveFile(preViewStream, "preview.bmp", previewDir);
+            }
 
             var animationToAdd = new Animation()
             {
                 Title = newAnimation.Title,
-                //PreviewImageFile = ,
-                AnimationFile = $"/{animationDir}/{animationFileName}"
+                PreviewImageFile = $"/{previewDir}/{preViewFileName}",
+                AnimationFile = animationFileName
             };
             _context.Animations.Add(animationToAdd);
             await _context.SaveChangesAsync();
@@ -70,6 +82,7 @@ namespace BLL.Services
             var result = await _context.Animations.FindAsync(animationToAdd.Id);
             return new AnimationDto(result);
         }
+        
         public async Task<AnimationDto> UpdateAnimation(AnimationDto updatedAnimation)
         {
             var toUpdate = await _context.Animations.FindAsync(updatedAnimation.Id);
@@ -110,5 +123,10 @@ namespace BLL.Services
             return result;
         }
 
+        public async Task<string> GetAnimationFileName(long animationId)
+        {
+            var animation = await _context.Animations.FindAsync(animationId);
+            return animation.AnimationFile;
+        }
     }
 }
