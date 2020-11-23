@@ -18,7 +18,8 @@ CAFF::CAFF() :
 	creator_len(0), 
 	creator(), 
 	durations(nullptr), 
-	ciffs(nullptr)
+	ciffs(nullptr),
+	BigI(0)
 {
 }
 
@@ -27,12 +28,13 @@ CAFF::~CAFF()
 	delete[] ciffs;
 }
 
-CAFF::CAFF(const CAFF& rhv):
+CAFF::CAFF(const CAFF& rhv) :
 	header_size(rhv.header_size),
 	num_anim(rhv.num_anim),
 	creator_len(rhv.creator_len),
 	creator(rhv.creator),
-	creator_date(rhv.creator_date)
+	creator_date(rhv.creator_date),
+	BigI(rhv.BigI)
 {
 	ciffs = new CIFF[num_anim];
 	for (int i = 0; i < num_anim; i++)
@@ -49,7 +51,8 @@ CAFF::CAFF(CAFF&& rhv) :
 	creator(rhv.creator),
 	durations(rhv.durations),
 	creator_date(rhv.creator_date),
-	ciffs(rhv.ciffs)
+	ciffs(rhv.ciffs),
+	BigI(rhv.BigI)
 {
 	rhv.durations = nullptr;
 	rhv.ciffs = nullptr;
@@ -62,6 +65,7 @@ CAFF& CAFF::operator=(const CAFF& rhv)
 	creator_len = rhv.creator_len;
 	creator = rhv.creator;
 	creator_date = rhv.creator_date;
+	BigI = rhv.BigI;
 
 	delete[] ciffs;
 	ciffs = new CIFF[num_anim];
@@ -82,6 +86,7 @@ CAFF& CAFF::operator=(CAFF&& rhv)
 	creator_len = rhv.creator_len;
 	creator = rhv.creator;
 	creator_date = rhv.creator_date;
+	BigI = rhv.BigI;
 
 	delete[] ciffs;
 	delete[] durations;
@@ -185,19 +190,17 @@ std::istream& operator>>(std::istream& is, CAFF& caff)
 			break;
 		case 3:
 			is.read(inputbytes, 8);
-			static int i = 0;
-			if (i < caff.num_anim)
+			if (caff.BigI < caff.num_anim)
 			{
-				caff.durations[i] = *(reinterpret_cast<unsigned long long*>(inputbytes));
-				is >> caff.ciffs[i];
-				i++;
-				if (i == caff.num_anim)
+				caff.durations[caff.BigI] = *(reinterpret_cast<unsigned long long*>(inputbytes));
+				is >> caff.ciffs[caff.BigI];
+				caff.BigI++;
+				if (caff.BigI == caff.num_anim)
 					done = true;
 			}
 			else
 			{
-				if (caff.header_size != 20)
-					throw CAFF_format_exception("Too many CIFFs in the CAFF file");
+				throw CAFF_format_exception("Too many CIFFs in the CAFF file");
 			}
 			
 			break;
