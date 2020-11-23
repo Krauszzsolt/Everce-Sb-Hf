@@ -113,7 +113,7 @@ namespace API.Controllers
         /// <param name="_env">Web Host environment from DI</param>
         /// <returns>Animation as file</returns>
         [HttpGet("{id}/download")]
-        //[Authorize]
+        [Authorize]
         public async Task<PhysicalFileResult> DownloadAnimation(long id, [FromServices] IWebHostEnvironment _env)
         {
             var fileName = await _animationService.GetAnimationFileName(id);
