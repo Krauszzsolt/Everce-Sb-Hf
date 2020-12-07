@@ -8,7 +8,7 @@ void PreviewProvider::getPreviewOfCaff(unsigned char* bitmap, const char* str, u
 	std::stringstream ss;
 
 	std::string s(str, len);
-
+		
 	ss.str(s);
 
 	ss >> caff;

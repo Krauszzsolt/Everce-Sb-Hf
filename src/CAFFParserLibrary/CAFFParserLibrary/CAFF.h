@@ -33,6 +33,7 @@ private:
 	std::string creator;
 	unsigned long long* durations;
 	CIFF* ciffs;
+	int BigI;
 };
 
 class CAFF_format_exception : public std::exception
@@ -53,6 +54,7 @@ private:
 	CIFF& ciff;
 	int width, height;
 	int heightDiff, widthDiff;
+	
 };
 
 std::istream& operator>>(std::istream& is, CAFF& caff);
