@@ -14,11 +14,11 @@
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" name="password" [(ngModel)]="registerDto.password" />
+          <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="registerDto.password" />
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Confirm password</mat-label>
-          <input matInput placeholder="Password" name="confirmPassword" [(ngModel)]="registerDto.confirmPassword" />
+          <input matInput type="password" placeholder="Password" name="confirmPassword" [(ngModel)]="registerDto.confirmPassword" />
         </mat-form-field>
         <mat-error *ngIf="errorMessage">
           Something wrong, please check the form.
